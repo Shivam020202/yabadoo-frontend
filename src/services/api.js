@@ -1,6 +1,5 @@
 // src/services/api.js
-const API_URL =
-  process.env.NODE_ENV === "production" ? "/api" : "http://localhost:5000/api";
+const API_URL = import.meta.env.API_URL;
 
 // Submissions API
 export const submitForm = async (formData) => {
