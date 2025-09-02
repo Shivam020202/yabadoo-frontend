@@ -30,6 +30,7 @@ const LoginModal = ({ isOpen, onClose }) => {
       await login(formData.email, formData.password);
       onClose();
       navigate("/dashboard");
+      window.location.reload();
     } catch (error) {
       setError("Invalid credentials. Please try again.");
     } finally {
