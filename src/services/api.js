@@ -25,6 +25,7 @@ export const submitForm = async (formData) => {
     throw error;
   }
 };
+// small change
 
 export const getSubmissions = async (token) => {
   try {
