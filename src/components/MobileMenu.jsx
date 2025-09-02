@@ -1,9 +1,16 @@
-// src/components/MobileMenu.jsx
-const MobileMenu = ({ isOpen, setIsOpen }) => {
+import React from "react";
+import { Link } from "react-router-dom";
+
+const MobileMenu = ({
+  isOpen,
+  setIsOpen,
+  setIsLoginModalOpen,
+  isAuthenticated,
+}) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-aussie-purple bg-opacity-95 z-50 flex flex-col items-center justify-center">
+    <div className="fixed inset-0 bg-black bg-opacity-95 z-50 flex flex-col items-center justify-center">
       <button
         className="absolute top-5 right-5 text-white"
         onClick={() => setIsOpen(false)}
@@ -40,15 +47,25 @@ const MobileMenu = ({ isOpen, setIsOpen }) => {
         >
           Contact
         </a>
-        <button
-          className="text-white text-xl hover:text-aussie-gold transition font-bold"
-          onClick={() => {
-            setIsOpen(false);
-            // Open login modal (you'd need to pass this function from Home.jsx)
-          }}
-        >
-          Login
-        </button>
+        {isAuthenticated ? (
+          <Link
+            to="/dashboard"
+            className="text-white text-xl hover:text-aussie-gold transition font-bold"
+            onClick={() => setIsOpen(false)}
+          >
+            Dashboard
+          </Link>
+        ) : (
+          <button
+            className="text-white text-xl hover:text-aussie-gold transition font-bold"
+            onClick={() => {
+              setIsOpen(false);
+              setIsLoginModalOpen(true);
+            }}
+          >
+            Login
+          </button>
+        )}
       </div>
     </div>
   );
